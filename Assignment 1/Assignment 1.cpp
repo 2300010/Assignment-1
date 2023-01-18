@@ -2,10 +2,20 @@
 //
 
 #include <iostream>
+#include "Exercice_2.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //Declare objects of the exercices classes
+    Exercice_2 ex2;
+
+    int userEntryFloors;
+
+    cout << "Please enter the number of floors: ";
+    cin >> userEntryFloors;
+
+    cout << "The building is " << ex2.BuildingHeightCalculator(userEntryFloors) << " meters.";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
