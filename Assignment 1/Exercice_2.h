@@ -2,21 +2,6 @@
 class Exercice_2
 {
 public:
-	////Declare method for the menu of the exercice
-	//int ExerciceMenu2()
-	//{
-	//	try
-	//	{
-	//		//Declare variable for user entry
-	//		int userEntry;
-
-
-	//	}
-	//	catch (...)
-	//	{
-
-	//	}
-	//}
 
 	//Declare method to calculate building height
 	int BuildingHeightCalculator(int userEntry)
@@ -41,7 +26,7 @@ public:
 	}
 
 	//Declare method to convert pressure
-	int AtmospherePressureConverter(float userEntry)
+	float AtmospherePressureConverter(float userEntry)
 	{
 		try
 		{
@@ -54,6 +39,42 @@ public:
 
 			//Return converted pressure from kPa to atm
 			return kPaEntered / ONE_ATM_IN_kPa;
+		}
+		catch (...)
+		{
+
+		}
+	}
+
+	//Declare method to calculate evalution average
+	float FinalGradeCalculator(float userLabGrade, float userMidtermGrade, float userFinalExamGrade)
+	{
+		try
+		{
+			float LaboratoryGrade = userLabGrade * 40 / 100;
+			float MidtermExamGrade = userMidtermGrade * 25 / 100;
+			float FinalExamGrade = userFinalExamGrade * 35 / 100;
+
+			return LaboratoryGrade + MidtermExamGrade + FinalExamGrade;
+		}
+		catch (...)
+		{
+
+		}
+	}
+
+	//Declare method to calculate expenses
+	float ExpensesCalculator(float foodExpenses, float householdExpenses,
+		float commonExpenses, float transportPass, float rent, float monthlyBills)
+	{
+		try
+		{
+			//Declare variables
+			float weeklyExpenses = foodExpenses + householdExpenses + commonExpenses;
+			float monthlyExpenses = transportPass + rent + monthlyBills;
+			float totalExpense = weeklyExpenses * 2 + monthlyExpenses;
+
+			return totalExpense;
 		}
 		catch (...)
 		{
