@@ -3,16 +3,21 @@
 
 #include <iostream>
 #include <iomanip>
+#include "Exercice_1.h"
 #include "Exercice_2.h"
 #include "Exercice_5.h"
 #include "Assignment 1.h"
+
 using namespace std;
 
 //Declare objects of the exercices classes
+Exercice_1 ex1;
 Exercice_2 ex2;
 Exercice_5 ex5;
 
+
 //Declare signatures
+void Exercice1();
 int Exercice2();
 int Exercice5();
 
@@ -49,7 +54,7 @@ int main()
 			{
 				case '1':
 				{
-					
+					Exercice1();
 				}
 					break;
 				case '2':
@@ -116,6 +121,52 @@ int main()
 	{
 		cout << "Error!";
 	}
+}
+
+void Error(string message)
+{
+	cin.clear();
+	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+	cout << "\nError! " << message << ".";
+}
+
+template <typename T>
+T verifyVariable(T t) {
+	while (true)
+	{
+		//Receive input 
+		//Verify if the entry is the right type of variable and postivie
+		if (cin.fail() || t <= 0)
+		{
+			//Reset state and content of cin
+			Error("Please enter the right positive value without decimals");
+		}
+		else
+		{
+			//If fail() is false
+			//Break out of the loop
+			break;
+		}
+	}
+	return t;
+}
+
+void Exercice1() {
+	double unitPrice(0);
+	double quantity(0);
+
+	cout << "\nPlease enter the number of units : ";
+	cin >> unitPrice;
+	verifyVariable(unitPrice);
+
+	cout << "\nPlease enter the number of quantity : ";
+	cin >> quantity;
+	verifyVariable(quantity);
+
+	ex1.Number2(unitPrice, quantity);
+	cout << "\n";
+	
 }
 
 int Exercice2()
