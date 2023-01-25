@@ -14,6 +14,7 @@ Exercice_5 ex5;
 
 //Declare signatures
 int Exercice2();
+int Exercice5();
 
 
 int main()
@@ -23,10 +24,13 @@ int main()
 	
 	try
 	{
+		//Ask user to choose an option of the menu
 		cout << "Please enter the exercice number to test it:" << endl;
 		
+		//Program loop with menu
 		do 
 		{
+			//Print menu
 			cout << "Exercice 1" << endl;
 			cout << "Exercice 2" << endl;
 			cout << "Exercice 3" << endl;
@@ -37,6 +41,8 @@ int main()
 			cout << "Exercice 8" << endl;
 			cout << "Exercice 9" << endl;
 			cout << "To quit, enter 0: ";
+
+			//Read user entry
 			cin >> userEntryChoice;
 
 			switch (userEntryChoice)
@@ -89,12 +95,14 @@ int main()
 					break;
 				case '0':
 				{
+					//Print quit message
 					cout << "\nYou are quitting the program!\n";
 					system("pause");
 				}
 					break;
 				default:
 				{
+					//Print invalid entry message
 					cout << "\nError! Please select a valid option:\n";
 				}
 					break;
@@ -115,11 +123,11 @@ int Exercice2()
 	try
 	{
 		//Declare variables
-		int userEntryFloors;
-		float userEntryPressure;
-		float userEntryLab;
-		float userEntryMidterm;
-		float userEntryFinal;
+		int floorsUserEntry;
+		float pressureUserEntry;
+		float labGradeUserEntry;
+		float midtermGradeUserEntry;
+		float finalGradeUserEntry;
 		float userEntryPaycheck;
 		float userEntryFoodExpenses;
 		float userEntryHouseholdExpenses;
@@ -138,8 +146,8 @@ int Exercice2()
 		//Failsafe for variable type
 		while (true)
 		{
-			//Receive input 
-			cin >> userEntryFloors;
+			//Read user entry
+			cin >> floorsUserEntry;
 
 			//Verify if the entry is the right type of variable
 			if (cin.fail()) 
@@ -155,7 +163,7 @@ int Exercice2()
 			else 
 			{
 				//Verify if entry is lower or equal to 0
-				if(userEntryFloors <= 0)
+				if(floorsUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -174,8 +182,8 @@ int Exercice2()
 		}
 
 		//Print result of the calculation
-		cout << "\nA building of " << userEntryFloors << " floors is "
-			<< ex2.BuildingHeightCalculator(userEntryFloors) << " meters.\n";
+		cout << "\nA building of " << floorsUserEntry << " floors is "
+			<< ex2.BuildingHeightCalculator(floorsUserEntry) << " meters.\n";
 
 		//Ask user to enter number of floors for the building
 		cout << "\nPlease enter the pressure in kPa: ";
@@ -184,7 +192,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input 
-			cin >> userEntryPressure;
+			cin >> pressureUserEntry;
 
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
@@ -199,7 +207,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryPressure <= 0)
+				if (pressureUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -218,8 +226,8 @@ int Exercice2()
 		}
 
 		//Print result of the conversion
-		cout << "\nA pressure of " << userEntryPressure << " kPA is equal to "
-			<< ex2.AtmospherePressureConverter(userEntryPressure) << " atm.\n";
+		cout << "\nA pressure of " << pressureUserEntry << " kPA is equal to "
+			<< ex2.AtmospherePressureConverter(pressureUserEntry) << " atm.\n";
 
 		//Ask user to enter the grade for the Laboratory 
 		cout << "\nPlease enter the laboratory grade: ";
@@ -228,7 +236,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryLab;
+			cin >> labGradeUserEntry;
 
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
@@ -243,7 +251,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryLab <= 0 || userEntryLab > 100)
+				if (labGradeUserEntry <= 0 || labGradeUserEntry > 100)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -268,7 +276,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryMidterm;
+			cin >> midtermGradeUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -282,7 +290,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryMidterm <= 0 || userEntryMidterm > 100)
+				if (midtermGradeUserEntry <= 0 || midtermGradeUserEntry > 100)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -307,7 +315,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryFinal;
+			cin >> finalGradeUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -321,7 +329,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryFinal <= 0 || userEntryFinal > 100)
+				if (finalGradeUserEntry <= 0 || finalGradeUserEntry > 100)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -341,7 +349,7 @@ int Exercice2()
 
 		//Print final grade
 		cout << "\nThe final grade of the student is "
-			<< ex2.FinalGradeCalculator(userEntryLab, userEntryMidterm, userEntryFinal) << "%.\n";
+			<< ex2.FinalGradeCalculator(labGradeUserEntry, midtermGradeUserEntry, finalGradeUserEntry) << "%.\n";
 
 		//Ask user to enter the amount for the paycheck 
 		cout << "\nPlease enter your biweekly paycheck: ";
@@ -659,4 +667,77 @@ int Exercice2()
 	//	}
 	//}
 }
+
+int Exercice5() 
+{
+	try
+	{
+		//Declare variables
+		float gradeUserEntry;
+
+		//Ask the user to enter a grade
+		cout << "\nPlease enter your grade in percentage without the symbol(%): ";
+
+		//while (true)
+		//{
+		//	//Read user entry
+		//}
+		
+		return 1;
+	}
+	catch (...)
+	{
+
+	}
+}
+
+string GradeConverter(float grade)
+{
+	try
+	{
+		//Declare constant for message
+		string returnMessage = "\nYour grade: ";
+
+		//Declare variable to receive letter grade
+		char convertedGrade = ' ';
+
+		//Verify in what category grade falls in
+		if (grade > 89)
+		{
+			//Set converted grade to A
+			convertedGrade = 'A';
+		}
+		else if (grade > 79)
+		{
+			//Set converted grade to B
+			convertedGrade = 'B';
+		}
+		else if (grade > 69)
+		{
+			//Set converted grade to C
+			convertedGrade = 'C';
+		}
+		else if (grade > 59)
+		{
+			//Set converted grade to D
+			convertedGrade = 'D';
+		}
+		else
+		{
+			//Set converted grade to F
+			convertedGrade = 'F';
+		}
+
+		//Add grade to return message
+		returnMessage += convertedGrade;
+
+		//Return converted grade
+		return returnMessage;
+	}
+	catch (...)
+	{
+
+	}
+}
+
 
