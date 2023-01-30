@@ -1,15 +1,16 @@
 #pragma once
+#include <string>
 class Exercice_5
 {
 public:
 
 	//Declare method to convert grade to a letter
-	string GradeConverter(float grade) 
+	std::string GradeConverter(float grade) 
 	{
 		try
 		{
 			//Declare constant for message
-			string returnMessage = "\nYour grade: ";
+			std::string returnMessage = "\nYour grade: ";
 
 			//Declare variable to receive letter grade
 			char convertedGrade = ' ';

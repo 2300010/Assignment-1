@@ -123,24 +123,26 @@ int main()
 	}
 }
 
-void Error(string message)
+void Error(std::istream& stream,string message)
 {
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	stream.clear();
+	stream.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	cout << "\nError! " << message << ".";
 }
 
-template <typename T>
-T verifyVariable(T t) {
+
+double verifyDouble(std::istream& stream) {
+	double variable;
 	while (true)
 	{
 		//Receive input 
+		stream >> variable;
 		//Verify if the entry is the right type of variable and postivie
-		if (cin.fail() || t <= 0)
+		if (stream.fail() || variable <= 0)
 		{
 			//Reset state and content of cin
-			Error("Please enter the right positive value without decimals");
+			Error(stream,"Please enter the right positive value without decimals");
 		}
 		else
 		{
@@ -149,20 +151,18 @@ T verifyVariable(T t) {
 			break;
 		}
 	}
-	return t;
+	return variable;
 }
 
 void Exercice1() {
-	double unitPrice(0);
-	double quantity(0);
+	double unitPrice(0.00);
+	double quantity(0.00);
 
 	cout << "\nPlease enter the number of units : ";
-	cin >> unitPrice;
-	verifyVariable(unitPrice);
+	unitPrice = verifyDouble(cin);
 
 	cout << "\nPlease enter the number of quantity : ";
-	cin >> quantity;
-	verifyVariable(quantity);
+	quantity = verifyDouble(cin);
 
 	ex1.Number2(unitPrice, quantity);
 	cout << "\n";
@@ -717,78 +717,4 @@ int Exercice2()
 	//		break;
 	//	}
 	//}
-}
-
-int Exercice5() 
-{
-	try
-	{
-		//Declare variables
-		float gradeUserEntry;
-
-		//Ask the user to enter a grade
-		cout << "\nPlease enter your grade in percentage without the symbol(%): ";
-
-		//while (true)
-		//{
-		//	//Read user entry
-		//}
-		
-		return 1;
-	}
-	catch (...)
-	{
-
-	}
-}
-
-string GradeConverter(float grade)
-{
-	try
-	{
-		//Declare constant for message
-		string returnMessage = "\nYour grade: ";
-
-		//Declare variable to receive letter grade
-		char convertedGrade = ' ';
-
-		//Verify in what category grade falls in
-		if (grade > 89)
-		{
-			//Set converted grade to A
-			convertedGrade = 'A';
-		}
-		else if (grade > 79)
-		{
-			//Set converted grade to B
-			convertedGrade = 'B';
-		}
-		else if (grade > 69)
-		{
-			//Set converted grade to C
-			convertedGrade = 'C';
-		}
-		else if (grade > 59)
-		{
-			//Set converted grade to D
-			convertedGrade = 'D';
-		}
-		else
-		{
-			//Set converted grade to F
-			convertedGrade = 'F';
-		}
-
-		//Add grade to return message
-		returnMessage += convertedGrade;
-
-		//Return converted grade
-		return returnMessage;
-	}
-	catch (...)
-	{
-
-	}
-}
-
-
+};
