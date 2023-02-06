@@ -1,5 +1,3 @@
-// Assignment 1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 #include <iomanip>
@@ -15,15 +13,15 @@ Exercice_1 ex1;
 Exercice_2 ex2;
 Exercice_5 ex5;
 
-
 //Declare signatures
 void Exercice1();
 int Exercice2();
 int Exercice5();
 
-
 int main()
 {
+	
+
 	//Declare variables for user entry
 	char userEntryChoice;
 	
@@ -75,7 +73,8 @@ int main()
 					break;
 				case '5':
 				{
-
+					//Call function for Exercice 5
+					Exercice5();
 				}
 					break;
 				case '6':
@@ -724,16 +723,508 @@ int Exercice5()
 	try
 	{
 		//Declare variables
-		float gradeUserEntry;
+		float gradeUserEntry = 0;
+		float firstSideUserEntry = 0, secondSideUserEntry = 0, thirdSideUserEntry = 0;
+		int day1 = 0, month1 = 0, year1 = 0, day2 = 0, month2 = 0, year2 = 0;
+		float oldPremium = 0;
+		int numberOfAccident = 0;
+		int scoreJudge1 = 0, scoreJudge2 = 0, scoreJudge3 = 0, scoreJudge4 = 0, scoreJudge5 = 0, scoreJudge6 = 0;
 
+
+			//GRADE CONVERTER
 		//Ask the user to enter a grade
 		cout << "\nPlease enter your grade in percentage without the symbol(%): ";
 
-		//while (true)
-		//{
-		//	//Read user entry
-		//}
+		//Read user entry
+		cin >> gradeUserEntry;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a positive number with maximum 2 decimals equal or under a 100: ";
+			cin >> gradeUserEntry;
+		}
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (gradeUserEntry < 0 || gradeUserEntry > 100)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a positive number with maximum 2 decimals equal or under a 100: ";
+				cin >> gradeUserEntry;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Result of conversion
+		cout << "\nYour letter grade is: " << ex5.GradeConverter(gradeUserEntry) << "\n";
+
+			
+			//DATE VERIFICATOR
+		//Ask the user to enter the first date
+		cout << "\nPlease enter a first date in the format (dd mm yyyy): ";
+
+		//Read user entry
+		cin >> day1 >> month1 >> year1;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a valid date in the format (dd mm yyyy): ";
+			cin >> day1 >> month1 >> year1;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (month1 < 0 || month1 > 12)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid month: ";
+				cin >> month1;
+			}
+			else if (day1 < 0 || day1 > ex5.DaysInMonth(month1))
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid day in the selected month: ";
+				cin >> day1;
+			}
+			else if (year1 < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a year A.C. (positive only): ";
+				cin >> year1;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Print first year for the user
+		cout << "\nThe first date selected is: " << day1 << "-" << month1 << "-" << year1 << "\n";
+
+		//Ask the user to enter the second date
+		cout << "\nPlease enter a second date in the format (dd mm yyyy): ";
+
+		//Read user entry
+		cin >> day2 >> month2 >> year2;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a valid date in the format (dd mm yyyy): ";
+			cin >> day2 >> month2 >> year2;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (month2 < 0 || month2 > 12)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid month: ";
+				cin >> month2;
+			}
+			else if (day2 < 0 || day2 > ex5.DaysInMonth(month2))
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid day in the selected month: ";
+				cin >> day2;
+			}
+			else if (year2 < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a year A.C. (positive only): ";
+				cin >> year2;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Print second year for the user
+		cout << "\nThe second date selected is: " << day1 << "-" << month1 << "-" << year1 << "\n";
+
+		//Print result of the algorithm
+		if (ex5.FirstDateComesFirst(year1, year2, month1, month2, day1, day2))
+		{
+			cout << "\nThe first date (" << day1 << "-" << month1 << "-" << year1 << ") comes first.\n";
+		}
+		else
+		{
+			cout << "\nThe second date (" << day2 << "-" << month2 << "-" << year2 << ") comes first.\n";
+		}
+
+
+			//TRIANGLE VERIFICATOR
+		//Ask the user to enter the first side's length
+		cout << "\nPlease enter 3 lengths for sides of a triangle separated by spaces: ";
+
+		//Read user entries
+		cin >> firstSideUserEntry >> secondSideUserEntry >> thirdSideUserEntry;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter positive numbers with maximum 2 decimals: ";
+			cin >> firstSideUserEntry >> secondSideUserEntry >> thirdSideUserEntry;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (firstSideUserEntry < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a positive numbers with maximum 2 decimals: ";
+				cin >> firstSideUserEntry;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+		
+		//Print result of the algorithm
+		if (ex5.TriangleVerification(firstSideUserEntry, secondSideUserEntry, thirdSideUserEntry) == 's')
+		{
+			cout << "\nThis is a scalene triangle.\n";
+		}
+		else if (ex5.TriangleVerification(firstSideUserEntry, secondSideUserEntry, thirdSideUserEntry) == 'i')
+		{
+			cout << "\nThis is a isosceles triangle.\n";
+		}
+		else
+		{
+			cout << "\nThis is a equilateral triangle.\n";
+		}
+
+
+			//INSURANCE PREMIUM CALCULATOR
+		//Ask the user to enter the price of the old premium
+		cout << "\nPlease enter the old premium price: ";
+
+		//Read user entry
+		cin >> oldPremium;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a positive number with maximum 2 decimals: ";
+			cin >> oldPremium;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (oldPremium < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a positive numbers with maximum 2 decimals: \n";
+				cin >> oldPremium;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+
+		//Ask the user to enter the number of accidents
+		cout << "\nPlease enter the number of accidents: ";
+
+		//Read user entry
+		cin >> numberOfAccident;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a positive number without decimals: ";
+			cin >> numberOfAccident;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (numberOfAccident < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a positive numbers without decimals: ";
+				cin >> numberOfAccident;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+
+		//Print result of algorithm
+		cout << "\nThe new premium amounts to " << ex5.NewPremiumCalculator(oldPremium, numberOfAccident) << "$.\n";
+
+			//JUDGES SCORE AVERAGE
+		//Ask the user to enter the six scores of judges
+		cout << "\nPlease enter the six scores (maximum 100) separated by a space: ";
+
+		//Read user entries
+		cin >> scoreJudge1 >> scoreJudge2 >> scoreJudge3 >> scoreJudge4 >> scoreJudge5 >> scoreJudge6;
+
+		//Declare array to receive all scores
+		int scores[] = { scoreJudge1, scoreJudge2, scoreJudge3, scoreJudge4, scoreJudge5, scoreJudge6 };
+
+		//Failsafe for a invalid value
+		for (int score : scores)
+		{
+			while (true)
+			{
+				if (score < 0 || score > 100)
+				{
+					//Reset state and content of cin
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+					//Print error message
+					cout << "\nError! " << score << " is invalid.\n"
+						<< "Please enter a positive number (maximum 100) without decimals : ";
+					cin >> score;
+				}
+				else
+				{
+					//If fail() is false
+					//Break out of the loop
+					break;
+				}
+			}
+		}
+		
+		//Print result of algorithm
+		cout << "\nThe average score of the judges is " 
+			<< ex5.JudgesAverageScore(scores[0], scores[1], scores[2], scores[3], scores[4], scores[5]) << " out of 100 points.\n";
+
+
+			//DISPLAY NEXT DAY
+		//Ask the user to enter the six scores of judges
+		cout << "\nPlease enter a date in the following format (dd mm yyyy): ";
+
+		//Read user entries
+		cin >> day1 >> month1 >> year1;
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (month1 < 0 || month1 > 12)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid month: ";
+				cin >> month1;
+			}
+			else if (day1 < 0 || day1 > ex5.DaysInMonth(month1))
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a valid day in the selected month: ";
+				cin >> day1;
+			}
+			else if (year1 < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a year A.C. (positive only): ";
+				cin >> year1;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Verify if next day is in the next month and in the next year
+		if (ex5.DisplayNextDay(day1, month1, year1) == 'd')
+		{
+			//Print result of the algorithm
+			cout << "\nThe following date is: " << day1 + 1 << "-" << month1 << "-" << year1;
+		}
+		else if (ex5.DisplayNextDay(day1, month1, year1) == 'm')
+		{
+			//Print result of the algorithm
+			cout << "\nThe following date is: 1-" << month1 + 1 << "-" << year1;
+		}
+		else
+		{
+			//Print result of the algorithm
+			cout << "\nThe following date is: 1-1-" << year1 + 1;
+		}
+
+
+
+			//LEAP YEAR VERIFICATOR
+		//Ask the user to enter the year to verify
+		cout << "\nPlease enter a year: ";
+
+		//Read user entry
+		cin >> year1;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a positive number without decimals: ";
+			cin >> year1;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Failsafe for a invalid value
+		while (true)
+		{
+			if (year1 < 0)
+			{
+				//Reset state and content of cin
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+				//Print error message
+				cout << "\nError! Please enter a positive numbers with maximum 2 decimals: \n";
+				cin >> year1;
+			}
+			else
+			{
+				//If fail() is false
+				//Break out of the loop
+				break;
+			}
+		}
+
+		if (ex5.IsLeapYear(year1))
+		{
+			cout << "\nThe year " << year1 << " is a leap year.\n";
+		}
+		else
+		{
+			cout << "\nThe year " << year1 << " is not a leap year.\n";
+		}
+
+
+		cout << "\n";
+
+
 		return 1;
 	}
 	catch (...)
@@ -741,54 +1232,3 @@ int Exercice5()
 
 	}
 }
-
-string GradeConverter(float grade)
-{
-	try
-	{
-		//Declare constant for message
-		string returnMessage = "\nYour grade: ";
-
-		//Declare variable to receive letter grade
-		char convertedGrade = ' ';
-
-		//Verify in what category grade falls in
-		if (grade > 89)
-		{
-			//Set converted grade to A
-			convertedGrade = 'A';
-		}
-		else if (grade > 79)
-		{
-			//Set converted grade to B
-			convertedGrade = 'B';
-		}
-		else if (grade > 69)
-		{
-			//Set converted grade to C
-			convertedGrade = 'C';
-		}
-		else if (grade > 59)
-		{
-			//Set converted grade to D
-			convertedGrade = 'D';
-		}
-		else
-		{
-			//Set converted grade to F
-			convertedGrade = 'F';
-		}
-
-		//Add grade to return message
-		returnMessage += convertedGrade;
-
-		//Return converted grade
-		return returnMessage;
-	}
-	catch (...)
-	{
-
-	}
-}
-
-
