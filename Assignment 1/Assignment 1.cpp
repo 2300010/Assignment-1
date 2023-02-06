@@ -1,9 +1,11 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cc>
 #include "Exercice_1.h"
 #include "Exercice_2.h"
 #include "Exercice_5.h"
+#include "Exercice_8.h"
 #include "Assignment 1.h"
 
 using namespace std;
@@ -12,6 +14,7 @@ using namespace std;
 Exercice_1 ex1;
 Exercice_2 ex2;
 Exercice_5 ex5;
+Exercice_8 ex8;
 
 //Declare signatures
 void Exercice1();
@@ -173,19 +176,19 @@ int Exercice2()
 	try
 	{
 		//Declare variables
-		int floorsUserEntry;
-		float pressureUserEntry;
-		float labGradeUserEntry;
-		float midtermGradeUserEntry;
-		float finalGradeUserEntry;
-		float userEntryPaycheck;
-		float userEntryFoodExpenses;
-		float userEntryHouseholdExpenses;
-		float userEntryCommonExpenses;
-		float userEntryTransportExpenses;
-		float userEntryRent;
-		float userEntryMonthlyBills;
-		float userTotalExpenses;
+		int floorsUserEntry = 0;
+		float pressureUserEntry = 0;
+		float labGradeUserEntry = 0;
+		float midtermGradeUserEntry = 0;
+		float finalGradeUserEntry = 0;
+		float paycheckUserEntry;
+		float foodExpensesUserEntry;
+		float householdExpensesUserEntry;
+		float commonExpensesUserEntry;
+		float transportExpensesUserEntry;
+		float rentUserEntry;
+		float monthlyBillsUserEntry;
+		float totalExpensesUser;
 
 		////Set precision to 2 decimals
 		//cout << setprecision(2);
@@ -408,7 +411,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryPaycheck;
+			cin >> paycheckUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -422,7 +425,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryPaycheck <= 0)
+				if (paycheckUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -447,7 +450,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryFoodExpenses;
+			cin >> foodExpensesUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -461,7 +464,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryFoodExpenses <= 0)
+				if (foodExpensesUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -486,7 +489,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryHouseholdExpenses;
+			cin >> householdExpensesUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -500,7 +503,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryHouseholdExpenses <= 0)
+				if (householdExpensesUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -525,7 +528,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryCommonExpenses;
+			cin >> commonExpensesUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -539,7 +542,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryCommonExpenses <= 0)
+				if (commonExpensesUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -564,7 +567,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryTransportExpenses;
+			cin >> transportExpensesUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -578,7 +581,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryTransportExpenses <= 0)
+				if (transportExpensesUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -603,7 +606,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryMonthlyBills;
+			cin >> monthlyBillsUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -617,7 +620,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryMonthlyBills <= 0)
+				if (monthlyBillsUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -642,7 +645,7 @@ int Exercice2()
 		while (true)
 		{
 			//Receive input
-			cin >> userEntryRent;
+			cin >> rentUserEntry;
 			//Verify if the entry is the right type of variable
 			if (cin.fail())
 			{
@@ -656,7 +659,7 @@ int Exercice2()
 			}
 			else
 			{
-				if (userEntryRent <= 0)
+				if (rentUserEntry <= 0)
 				{
 					//Reset state and content of cin
 					cin.clear();
@@ -675,14 +678,14 @@ int Exercice2()
 		}
 
 		//Set local variable to the function's return value
-		userTotalExpenses = ex2.ExpensesCalculator(userEntryFoodExpenses, userEntryHouseholdExpenses,
-			userEntryCommonExpenses, userEntryTransportExpenses, userEntryRent, userEntryMonthlyBills);
+		totalExpensesUser = ex2.ExpensesCalculator(foodExpensesUserEntry, householdExpensesUserEntry,
+			commonExpensesUserEntry, transportExpensesUserEntry, rentUserEntry, monthlyBillsUserEntry);
 
 		//Print the result of all the operations
-		cout << "\n\nYour total expenses amount to: " << userTotalExpenses << "$ per month.";
-		cout << "\nYour total income is: " << userEntryPaycheck * 2 << "$ per month.";
+		cout << "\n\nYour total expenses amount to: " << totalExpensesUser << "$ per month.";
+		cout << "\nYour total income is: " << paycheckUserEntry * 2 << "$ per month.";
 		cout << "\nAfter all expenses are paid, you are left with: " 
-			<< (userEntryPaycheck * 2) - userTotalExpenses << "$ per month.\n";
+			<< (paycheckUserEntry * 2) - totalExpensesUser << "$ per month.\n";
 
 		system("pause");
 
@@ -1226,6 +1229,52 @@ int Exercice5()
 
 
 		return 1;
+	}
+	catch (...)
+	{
+
+	}
+}
+
+int Exercice8()
+{
+
+	try
+	{
+		//Declare variables
+		char lineToExecute = ' ';
+
+		//Ask user to choose a line to execute
+		cout << "Please choose a line to execute (Enter the letter of the line): \n";
+		cout << "a)	Write x\n";
+		cout << "b)	Write x + x\n";
+		cout << "c)	Write “x =”\n";
+		cout << "d)	Write “x * x”\n";
+		cout << "e)	Write “x * y”, y + x\n";
+		cout << "f)	Write x * y + y + x\n";
+		cout << "g)	Write “x * y + y + x” : ";
+
+		//Read entry
+		cin >> lineToExecute;
+
+		//Failsafe for wrong type of variable
+		while (cin.fail() || cin.peek() != '\n')
+		{
+			//Reset state and content of cin
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+
+			//Print error message
+			cout << "\nError! Please enter a valid date in the format (dd mm yyyy): ";
+			cin >> lineToExecute;
+		}
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+		//Verify the choice of user
+		
+
+
 	}
 	catch (...)
 	{
