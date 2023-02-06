@@ -122,24 +122,26 @@ int main()
 	}
 }
 
-void Error(string message)
+void Error(std::istream& stream,string message)
 {
-	cin.clear();
-	cin.ignore(numeric_limits<streamsize>::max(), '\n');
+	stream.clear();
+	stream.ignore(numeric_limits<streamsize>::max(), '\n');
 
 	cout << "\nError! " << message << ".";
 }
 
-template <typename T>
-T verifyVariable(T t) {
+
+double verifyDouble(std::istream& stream) {
+	double variable;
 	while (true)
 	{
 		//Receive input 
+		stream >> variable;
 		//Verify if the entry is the right type of variable and postivie
-		if (cin.fail() || t <= 0)
+		if (stream.fail() || variable <= 0)
 		{
 			//Reset state and content of cin
-			Error("Please enter the right positive value without decimals");
+			Error(stream,"Please enter the right positive value without decimals");
 		}
 		else
 		{
@@ -148,20 +150,18 @@ T verifyVariable(T t) {
 			break;
 		}
 	}
-	return t;
+	return variable;
 }
 
 void Exercice1() {
-	double unitPrice(0);
-	double quantity(0);
+	double unitPrice(0.00);
+	double quantity(0.00);
 
 	cout << "\nPlease enter the number of units : ";
-	cin >> unitPrice;
-	verifyVariable(unitPrice);
+	unitPrice = verifyDouble(cin);
 
 	cout << "\nPlease enter the number of quantity : ";
-	cin >> quantity;
-	verifyVariable(quantity);
+	quantity = verifyDouble(cin);
 
 	ex1.Number2(unitPrice, quantity);
 	cout << "\n";

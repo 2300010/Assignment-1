@@ -8,8 +8,8 @@ class Exercice_1 {
     public:
 
         //Declaring method that calculates QC taxes
-        double Number2(double unitPrice, double quantity) 
-        {
+		double Number2(double unitPrice, double quantity)
+		{
 			try
 			{
 				//Initialize variables
@@ -20,7 +20,7 @@ class Exercice_1 {
 
 				cout << "\nGST : " << totalGST;
 				cout << "\nQST : " << totalQST;
-				cout << "\nTotal Price After Taxes : " << ((unitPrice*quantity)+totalGST + totalQST) << "\n";
+				cout << "\nTotal Price After Taxes : " << ((unitPrice * quantity) + totalGST + totalQST) << "\n";
 
 
 				return totalGST + totalQST;
@@ -29,7 +29,7 @@ class Exercice_1 {
 			{
 
 			}
-        }
+		};
 
 
 };

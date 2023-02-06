@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 class Exercice_5
 {
 public:
